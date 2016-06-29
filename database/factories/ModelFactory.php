@@ -43,3 +43,17 @@ $factory->define(CodeDelivery\Models\Product::class, function (Faker\Generator $
         'description' => $faker->sentence
     ];
 });
+
+$factory->define(\CodeDelivery\Models\Order::class, function (Faker\Generator $faker) {
+    return [
+        'client_id' => $faker->numberBetween(1,10),
+        'total' => $faker->numberBetween(50,100),
+        'status' => 0
+    ];
+});
+
+$factory->define(\CodeDelivery\Models\OrderItem::class, function (\Faker\Generator $faker) {
+    return [
+
+    ];
+});
