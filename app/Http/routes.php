@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix'=>'admin','middleware'=>'auth.checkrole','as'=>'admin.'], function(){
+Route::group(['prefix'=>'admin','middleware'=>'auth.checkrole:admin','as'=>'admin.'], function(){
 
     Route::group(['prefix'=>'categorias', 'as'=>'categorias.'], function(){
         Route::get('', ['as' => 'index', 'uses' => 'CategoriesController@index']);
@@ -52,4 +52,18 @@ Route::group(['prefix'=>'admin','middleware'=>'auth.checkrole','as'=>'admin.'], 
         Route::get('deletar/{id}', ['as' => 'deletar', 'uses' => 'OrdersController@destroy'] );
     });
 
+    Route::group(['prefix'=>'cupons', 'as'=>'cupons.'], function(){
+        Route::get('', ['as' => 'index', 'uses' => 'CupomsController@index']);
+        Route::get('adicionar', ['as' => 'adicionar', 'uses' => 'CupomsController@create'] );
+        Route::get('editar/{id}', ['as' => 'editar', 'uses' => 'CupomsController@edit'] );
+        Route::post('update/{id}', ['as' => 'update', 'uses' => 'CupomsController@update'] );
+        Route::post('salvar', ['as' => 'salvar', 'uses' => 'CupomsController@store'] );
+    });
+
+});
+
+Route::group(['prefix'=>'customer', 'middleware'=>'auth.checkrole:client', 'as'=>'customer.'], function(){
+    Route::get('order', ['as' => 'order.index', 'uses' => 'CheckoutController@index']);
+    Route::get('order/create', ['as' => 'order.create', 'uses' => 'CheckoutController@create']);
+    Route::post('order/store', ['as' => 'order.store', 'uses' => 'CheckoutController@store']);
 });

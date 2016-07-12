@@ -2,6 +2,7 @@
 
 namespace CodeDelivery\Http\Controllers;
 
+use CodeDelivery\Services\ClientService;
 use CodeDelivery\Repositories\ClientRepository;
 use CodeDelivery\Http\Requests;
 use CodeDelivery\Http\Requests\AdminClientRequest;
@@ -12,10 +13,13 @@ class ClientsController extends Controller
 
     private $repository;
     private $userRepository;
+    private $clientService;
 
-    public function __construct(ClientRepository $repository, UserRepository $userRepository) {
+    public function __construct(ClientRepository $repository, ClientService $clientService, UserRepository $userRepository)
+    {
         $this->repository = $repository;
         $this->userRepository = $userRepository;
+        $this->clientService = $clientService;
     }
 
     public function index() {
@@ -29,18 +33,10 @@ class ClientsController extends Controller
         return view('admin.clientes.adicionar');
     }
 
-    public function store(AdminClientRequest $request) {
-
-        $user = $request->user;
-        $user['password'] = bcrypt('123456');
-        $user['role'] = 'Client';
-        $user['remember_token'] = $request->_token;
-
-        $userStore = $this->userRepository->create($user);
-
+    public function store(AdminClientRequest $request)
+    {
         $data = $request->all();
-        $data['user_id'] = $userStore->id;
-        $this->repository->create($data);
+        $this->clientService->create($data);
 
         return redirect()->route('admin.clientes.index');
     }
@@ -51,12 +47,11 @@ class ClientsController extends Controller
         return view('admin.clientes.editar', compact('client'));
     }
 
-    public function update(AdminClientRequest $request, $id) {
+    public function update(AdminClientRequest $request, $id)
+    {
         $data = $request->all();
-        $user = $request->user;
 
-        $clientUpdate = $this->repository->update($data, $id);
-        $this->userRepository->update($user, $clientUpdate->user_id);
+        $this->clientService->update($data, $id);
 
         return redirect()->route('admin.clientes.index');
     }
