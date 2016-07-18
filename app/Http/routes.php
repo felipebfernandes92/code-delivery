@@ -67,3 +67,21 @@ Route::group(['prefix'=>'customer', 'middleware'=>'auth.checkrole:client', 'as'=
     Route::get('order/create', ['as' => 'order.create', 'uses' => 'CheckoutController@create']);
     Route::post('order/store', ['as' => 'order.store', 'uses' => 'CheckoutController@store']);
 });
+
+Route::group(['prefix'=>'api','middleware'=>'oauth','as'=>'api.'], function(){
+    Route::get('pedidos', function(){
+       return [
+           'id' => 1,
+           'client' => 'Felipe',
+           'total' => 10
+       ];
+    });
+
+    Route::get('teste', function() {
+        return "Teste";
+    });
+});
+
+Route::post('oauth/access_token', function() {
+    return Response::json(Authorizer::issueAccessToken());
+});
