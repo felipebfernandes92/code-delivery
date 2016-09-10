@@ -34,6 +34,7 @@ class OrderService
 
     public function create(array $data){
         \DB::beginTransaction();
+
         try{
             $data['status'] = 0;
             // Evitar que o usuário envie diretamente um cupom_id

@@ -14,7 +14,8 @@ class Product extends Model implements Transformable
         'category_id',
         'name',
         'description',
-        'price'
+        'price',
+        'product_id'
     ];
 
     public function category() {

@@ -61,7 +61,6 @@ class ClientCheckoutController extends Controller
         $clientId = $this->userRepository->find($id)->client->id;
         $data['client_id'] = $clientId;
         $order = $this->service->create($data);
-        $order = $this->orderRepository->with('items')->find($order->id);
 
         return $this->orderRepository
             ->skipPresenter(false)
