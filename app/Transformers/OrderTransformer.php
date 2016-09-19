@@ -24,13 +24,22 @@ class OrderTransformer extends TransformerAbstract
     {
         return [
             'id'         => (int) $model->id,
-            'total'         =>  (float) $model->total,
+            'total'      =>  (float) $model->total,
+            'status'     => $this->getStatus($model->status),
             /* place your other model properties here */
 
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at
         ];
     }
+
+    public function getStatus($status)
+    {
+        $list_status = [0 => 'Pendente', 1 => 'A caminho', 2 => 'Entregue', 3 => 'Cancelado'];
+
+        return $list_status[$status];
+    }
+
 
     public function includeClient(Order $model)
     {

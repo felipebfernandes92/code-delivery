@@ -1,7 +1,14 @@
 angular.module('starter.controllers')
     .controller('ClientCheckoutCtrl', [
-        '$scope', '$state', '$cart', 'Order', '$ionicLoading', '$ionicPopup',
-        function($scope, $state, $cart, Order, $ionicLoading, $ionicPopup) {
+        '$scope', '$state', '$cart', 'Order', '$ionicLoading', '$ionicPopup', 'Cupom',
+        function($scope, $state, $cart, Order, $ionicLoading, $ionicPopup, Cupom) {
+
+            Cupom.get({code: 9024}, function(data) {
+ /*               console.log(data);*/
+            }, function(reponseError) {
+
+            });
+
             var cart = $cart.get();
             $scope.items = cart.items;
             $scope.total = cart.total;

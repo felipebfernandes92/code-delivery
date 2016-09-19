@@ -1,0 +1,16 @@
+<ion-view>
+    <ion-nav-title>Code delivery</ion-nav-title>
+    <div class="bar bar-subheader">
+        <h2 class="title">Lista de pedidos</h2>
+    </div>
+    <ion-content class="padding has-subheader">
+        <ion-list>
+            <ion-item ng-repeat="order in orders">
+                <h2>Pedido #{{order.id}}</h2>
+                <p>Data do pedido: {{ order.created_at.date|limitTo: 10| date: 'dd/MM/yyyy' }}</p>
+                <p>Itens: {{ order.items.data.length }}</p>
+                <p>Status: {{ order.status }}</p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

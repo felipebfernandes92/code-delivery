@@ -87,6 +87,11 @@ angular.module('starter', [
         templateUrl: 'templates/client/view_products.html',
         controller: 'ClientViewProductsCtrl'
       })
+      .state('client.view_orders', {
+          url: '/view_orders',
+          templateUrl: 'templates/client/view_orders.html',
+          controller: 'ClientViewOrdersCtrl'
+      })
       //$urlRouterProvider.otherwise('/')
 })
     .service('cart', function(){
