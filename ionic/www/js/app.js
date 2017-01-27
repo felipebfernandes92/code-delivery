@@ -11,7 +11,7 @@ angular.module('starter', [
 ])
 
 .constant('appConfig', {
-    baseUrl: 'http://localhost:8000'
+    baseUrl: 'http://192.168.15.103:8000'
     /*baseUrl: 'http://www.companhiadeideias.net.br',
     pusherKey: '6a88d2f1443280079cde'*/
 })
@@ -92,7 +92,7 @@ angular.module('starter', [
           templateUrl: 'templates/client/view_orders.html',
           controller: 'ClientViewOrdersCtrl'
       })
-      //$urlRouterProvider.otherwise('/')
+      $urlRouterProvider.otherwise('/login')
 })
     .service('cart', function(){
         this.items = [];
