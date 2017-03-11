@@ -7,10 +7,8 @@ use CodeDelivery\Repositories\CupomRepository;
 
 class CupomController extends Controller
 {
-    /**
-     * @var ProductRepository
-     */
-    private $productRepository;
+
+    private $repository;
 
     public function __construct(
         CupomRepository $repository

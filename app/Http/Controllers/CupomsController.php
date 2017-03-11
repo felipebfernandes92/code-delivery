@@ -33,7 +33,7 @@ class CupomsController extends Controller
         $data = $request->all();
         $this->repository->create($data);
 
-        return redirect()->route('admin.cuponsN.index');
+        return redirect()->route('admin.cupons.index');
     }
 
     public function edit($id) {

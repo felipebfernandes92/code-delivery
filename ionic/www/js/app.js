@@ -12,8 +12,6 @@ angular.module('starter', [
 
 .constant('appConfig', {
     baseUrl: 'http://192.168.15.103:8000'
-    /*baseUrl: 'http://www.companhiadeideias.net.br',
-    pusherKey: '6a88d2f1443280079cde'*/
 })
 
 .run(function($ionicPlatform) {

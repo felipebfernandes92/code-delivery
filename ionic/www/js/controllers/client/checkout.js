@@ -35,6 +35,8 @@ angular.module('starter.controllers')
 
                 if($scope.cupom.value){
                     o.cupom_code = $scope.cupom.code;
+                } else {
+                    o.cupom_code = null;
                 }
 
                 Order.save({id: null}, o, function(data){
@@ -50,7 +52,7 @@ angular.module('starter.controllers')
             };
 
             $scope.readBarCode = function(){
-                getValueCupom(9024);
+                getValueCupom(1309);
             };
 
             $scope.removeCupom = function(){
