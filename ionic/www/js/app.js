@@ -12,8 +12,6 @@ angular.module('starter', [
 
 .constant('appConfig', {
     baseUrl: 'http://localhost:8000'
-    /*baseUrl: 'http://www.companhiadeideias.net.br',
-    pusherKey: '6a88d2f1443280079cde'*/
 })
 
 .run(function($ionicPlatform) {
@@ -92,7 +90,7 @@ angular.module('starter', [
           templateUrl: 'templates/client/view_orders.html',
           controller: 'ClientViewOrdersCtrl'
       })
-      //$urlRouterProvider.otherwise('/')
+      $urlRouterProvider.otherwise('/login')
 })
     .service('cart', function(){
         this.items = [];
