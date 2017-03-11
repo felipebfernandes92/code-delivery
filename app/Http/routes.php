@@ -59,7 +59,6 @@ Route::group(['prefix'=>'admin','middleware'=>'auth.checkrole:admin','as'=>'admi
         Route::post('update/{id}', ['as' => 'update', 'uses' => 'CupomsController@update'] );
         Route::post('salvar', ['as' => 'salvar', 'uses' => 'CupomsController@store'] );
     });
-
 });
 
 Route::group(['prefix'=>'customer', 'middleware'=>'auth.checkrole:client', 'as'=>'customer.'], function(){
