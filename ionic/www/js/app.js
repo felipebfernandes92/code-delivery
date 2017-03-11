@@ -11,7 +11,7 @@ angular.module('starter', [
 ])
 
 .constant('appConfig', {
-    baseUrl: 'http://localhost:8000'
+    baseUrl: 'http://192.168.15.103:8000'
 })
 
 .run(function($ionicPlatform) {
