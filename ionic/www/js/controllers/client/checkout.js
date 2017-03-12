@@ -52,6 +52,7 @@ angular.module('starter.controllers')
             };
 
             $scope.readBarCode = function(){
+
                 $cordovaBarcodeScanner
                     .scan()
                     .then(function(barcodeData) {
