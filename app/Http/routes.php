@@ -74,13 +74,6 @@ Route::group(['middleware' => 'cors'], function() {
 
     Route::group(['prefix'=>'api','middleware'=>'oauth','as'=>'api.'], function(){
 
-        Route::get('authenticated', function() {
-            $id = Authorizer::getResourceOwnerId();
-            $user = \CodeDelivery\Models\User::find($id);
-
-            return $user;
-        });
-
         Route::group(['prefix'=>'client', 'middleware' => 'oauth.checkrole:client', 'as' => 'client.'], function() {
             Route::resource('order',
                 'Api\Client\ClientCheckoutController', [
@@ -101,8 +94,14 @@ Route::group(['middleware' => 'cors'], function() {
                 'as' => 'orders.update_status'
             ]);
 
+            Route::post('order/{id}/geo', [
+                'as' => 'orders.geo',
+                'uses' => 'Api\Deliveryman\DeliverymanCheckoutController@geo'
+            ]);
+
         });
 
+        Route::get('authenticated', 'Api\UserController@authenticated');
         Route::get('cupom/{code}', 'Api\CupomController@show');
 
     });

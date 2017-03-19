@@ -1,8 +1,12 @@
 angular.module('starter.controllers')
     .controller('ClientCheckoutCtrl', [
-        '$scope', '$state', '$cart', 'Order', '$ionicLoading', '$ionicPopup', 'Cupom', '$cordovaBarcodeScanner',
-        function($scope, $state, $cart, Order, $ionicLoading, $ionicPopup, Cupom, $cordovaBarcodeScanner) {
+        '$scope', '$state', '$cart', 'ClientOrder', '$ionicLoading', '$ionicPopup', 'Cupom', '$cordovaBarcodeScanner', 'User',
+        function($scope, $state, $cart, Order, $ionicLoading, $ionicPopup, Cupom, $cordovaBarcodeScanner, User) {
+            User.authenticated({include: 'client'}, function (data) {
+                console.log(data.data);
+            }, function (responseError) {
 
+            })
             var cart = $cart.get();
             $scope.cupom = cart.cupom;
             $scope.items = cart.items;
@@ -39,7 +43,7 @@ angular.module('starter.controllers')
                     o.cupom_code = null;
                 }
 
-                Order.save({id: null}, o, function(data){
+                ClientOrder.save({id: null}, o, function(data){
                     $ionicLoading.hide();
                     $state.go('client.checkout_successful');
                 }, function(responseError){

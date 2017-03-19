@@ -5,18 +5,23 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('starter.controllers',[]);
 angular.module('starter.services', []);
+angular.module('starter.filters', []);
 
 angular.module('starter', [
-  'ionic', 'starter.controllers', 'starter.services', 'angular-oauth2', 'ngResource', 'ngCordova'
+  'ionic', 'starter.controllers', 'starter.services', 'angular-oauth2', 'ngResource', 'ngCordova', 'starter.filters',
+    'uiGmapgoogle-maps', 'pusher-angular'
 ])
 
 .constant('appConfig', {
     //baseUrl: 'http://localhost:8000'
-    baseUrl: 'http://192.168.15.105:8000'
+    baseUrl: 'http://192.168.15.105:8000',
+    pusherKey: '36055ebfecc0bdc5c855'
 })
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $window, appConfig) {
   $ionicPlatform.ready(function() {
+    $window.client = new Pusher(appConfig.pusherKey);
+
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -60,9 +65,11 @@ angular.module('starter', [
         controller: 'HomeCtrl'
       })
       .state('client', {
+        cache: false,
         abstract: true,
         url: '/client',
-        template: '<ion-nav-view/>'
+        templateUrl: 'templates/client/menu.html',
+        controller: 'ClientMenuCtrl'
       })
       .state('client.checkout', {
         cache: false,
@@ -91,6 +98,35 @@ angular.module('starter', [
           url: '/view_orders',
           templateUrl: 'templates/client/view_orders.html',
           controller: 'ClientViewOrdersCtrl'
+      })
+      .state('client.view_order', {
+          url: '/view_order/:id',
+          templateUrl: 'templates/client/view_order.html',
+          controller: 'ClientViewOrderCtrl'
+      })
+      .state('client.view_delivery', {
+          cache: false,
+          url: '/view_delivery/:id',
+          templateUrl: 'templates/client/view_delivery.html',
+          controller: 'ClientViewDeliveryCtrl'
+      })
+      .state('deliveryman', {
+          cache: false,
+          abstract: true,
+          url: '/deliveryman',
+          templateUrl: 'templates/deliveryman/menu.html',
+          controller: 'DeliverymanMenuCtrl'
+      })
+      .state('deliveryman.order', {
+          url: '/order',
+          templateUrl: 'templates/deliveryman/order.html',
+          controller: 'DeliverymanOrderCtrl'
+      })
+      .state('deliveryman.view_order', {
+          cache: false,
+          url: '/view_order/:id',
+          templateUrl: 'templates/deliveryman/view_order.html',
+          controller: 'DeliverymanViewOrderCtrl'
       })
       $urlRouterProvider.otherwise('/login');
 

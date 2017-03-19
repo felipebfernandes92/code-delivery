@@ -2,6 +2,7 @@
 
 namespace CodeDelivery\Transformers;
 
+use Illuminate\Database\Eloquent\Collection;
 use League\Fractal\TransformerAbstract;
 use CodeDelivery\Models\Order;
 
@@ -25,7 +26,9 @@ class OrderTransformer extends TransformerAbstract
         return [
             'id'         => (int) $model->id,
             'total'      =>  (float) $model->total,
-            'status'     => $this->getStatus($model->status),
+            'status'     => $model->status,
+            'product_names' => $this->getArrayProductNames($model->items),
+            'hash'       => $model->hash,
             /* place your other model properties here */
 
             'created_at' => $model->created_at,
@@ -38,6 +41,16 @@ class OrderTransformer extends TransformerAbstract
         $list_status = [0 => 'Pendente', 1 => 'A caminho', 2 => 'Entregue', 3 => 'Cancelado'];
 
         return $list_status[$status];
+    }
+
+    public function getArrayProductNames(Collection $items)
+    {
+        $names = [];
+        foreach ($items as $item) {
+            $names[] = $item->product->name;
+        }
+
+        return $names;
     }
 
 

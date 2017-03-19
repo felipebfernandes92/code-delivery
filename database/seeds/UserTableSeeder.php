@@ -27,7 +27,11 @@ class UserTableSeeder extends Seeder
         ])->client()->save(factory(\CodeDelivery\Models\Client::class)->make());
 
         factory(\CodeDelivery\Models\User::class)->create([
-            'role' => 'deliveryman'
+            'name' => 'Delivery Man',
+            'email' => 'deliveryman@user.com.br',
+            'password' => bcrypt(123456),
+            'role' => 'deliveryman',
+            'remember_token' => str_random(10)
         ]);
 
         factory(\CodeDelivery\Models\User::class, 10)->create()->each(function($usuario) {
