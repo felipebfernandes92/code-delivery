@@ -9,7 +9,7 @@ angular.module('starter.filters', []);
 
 angular.module('starter', [
   'ionic', 'starter.controllers', 'starter.services', 'angular-oauth2', 'ngResource', 'ngCordova', 'starter.filters',
-    'uiGmapgoogle-maps', 'pusher-angular'
+    'uiGmapgoogle-maps', 'pusher-angular', 'ionic.service.core'
 ])
 
 .constant('appConfig', {
@@ -18,7 +18,7 @@ angular.module('starter', [
     pusherKey: '36055ebfecc0bdc5c855'
 })
 
-.run(function($ionicPlatform, $window, appConfig) {
+.run(function($ionicPlatform, $window, appConfig, $localStorage) {
   $ionicPlatform.ready(function() {
     $window.client = new Pusher(appConfig.pusherKey);
 
@@ -35,6 +35,21 @@ angular.module('starter', [
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+    Ionic.io();
+    var push = new Ionic.Push({
+        debug: true,
+        onNotification: function (message) {
+            alert(message.text);
+        },
+        pluginConfig: {
+            android: {
+                iconColor: 'red'
+            }
+        }
+    });
+    push.register(function (token) {
+        $localStorage.set('device_token', token.token);
+    })
   });
 })
 
