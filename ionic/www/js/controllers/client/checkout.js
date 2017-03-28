@@ -3,7 +3,7 @@ angular.module('starter.controllers')
         '$scope', '$state', '$cart', 'ClientOrder', '$ionicLoading', '$ionicPopup', 'Cupom', '$cordovaBarcodeScanner', 'User',
         function($scope, $state, $cart, ClientOrder, $ionicLoading, $ionicPopup, Cupom, $cordovaBarcodeScanner, User) {
             User.authenticated({include: 'client'}, function (data) {
-                console.log(data.data);
+
             }, function (responseError) {
 
             })
@@ -56,7 +56,6 @@ angular.module('starter.controllers')
             };
 
             $scope.readBarCode = function(){
-
                 $cordovaBarcodeScanner
                     .scan()
                     .then(function(barcodeData) {

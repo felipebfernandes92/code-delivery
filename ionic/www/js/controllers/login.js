@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
     .controller('LoginController', [
-        '$scope', 'OAuth', 'OAuthToken', '$ionicPopup', '$state', 'UserData', 'User', '$localStorage',
-        function($scope, OAuth, OAuthToken, $ionicPopup, $state, UserData, User, $localStorage) {
+        '$scope', 'OAuth', 'OAuthToken', '$ionicPopup', '$state', 'UserData', 'User', '$localStorage', '$redirect',
+        function($scope, OAuth, OAuthToken, $ionicPopup, $state, UserData, User, $localStorage, $redirect) {
 
         $scope.user = {
             username: '',
@@ -20,7 +20,7 @@ angular.module('starter.controllers')
                 })
                 .then(function (data) {
                     UserData.set(data.data);
-                    $state.go('client.checkout');
+                    $redirect.redirectAfterLogin();
                 }, function (responseError) {
                     UserData.set(null);
                     OAuthToken.removeToken();
