@@ -6,10 +6,11 @@
 angular.module('starter.controllers', []);
 angular.module('starter.services', []);
 angular.module('starter.filters', []);
+angular.module('starter.run', []);
 
 angular.module('starter', [
-    'ionic', 'starter.controllers', 'starter.services', 'angular-oauth2', 'ngResource', 'ngCordova', 'starter.filters',
-    'uiGmapgoogle-maps', 'pusher-angular', 'ionic.service.core'
+    'ionic', 'starter.controllers', 'starter.services', 'angular-oauth2', 'ngResource', 'ngCordova',
+    'starter.filters', 'uiGmapgoogle-maps', 'pusher-angular', 'ionic.service.core', 'permission', 'starter.run'
 ])
 
     .constant('appConfig', {
@@ -92,7 +93,12 @@ angular.module('starter', [
                 abstract: true,
                 url: '/client',
                 templateUrl: 'templates/client/menu.html',
-                controller: 'ClientMenuCtrl'
+                controller: 'ClientMenuCtrl',
+                data: {
+                    permissions: {
+                        only: ['client-role']
+                    }
+                }
             })
             .state('client.checkout', {
                 cache: false,
@@ -138,7 +144,12 @@ angular.module('starter', [
                 abstract: true,
                 url: '/deliveryman',
                 templateUrl: 'templates/deliveryman/menu.html',
-                controller: 'DeliverymanMenuCtrl'
+                controller: 'DeliverymanMenuCtrl',
+                data: {
+                    permissions: {
+                        only: ['deliveryman-role']
+                    }
+                }
             })
             .state('deliveryman.order', {
                 url: '/order',

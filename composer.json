@@ -12,7 +12,7 @@
         "illuminate/html": "^5.0",
         "lucadegasperi/oauth2-server-laravel": "5.0.*",
         "league/fractal": "^0.13.0",
-        "barryvdh/laravel-cors": "^0.8.1",
+        "barryvdh/laravel-cors": "0.7.x",
         "pusher/pusher-php-server": "~2.0",
         "dmitrovskiy/ionic-push-php": "^1.0"
     },
