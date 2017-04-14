@@ -19,13 +19,13 @@ class CategoriesController extends Controller
 
     public function index() {
 
-        $categories = $this->repository->paginate(5);
+        $categories = $this->repository->all();
 
         return view('admin.categorias.index', compact('categories'));
     }
 
     public function create() {
-        return view('admin.categorias.adicionar');
+        return view('admin.categorias.gerenciar');
     }
 
     public function store(AdminCategoryRequest $request) {
@@ -38,7 +38,7 @@ class CategoriesController extends Controller
 
     public function edit($id) {
         $category = $this->repository->find($id);
-        return view('admin.categorias.editar', compact('category'));
+        return view('admin.categorias.gerenciar', compact('category'));
     }
 
     public function update(AdminCategoryRequest $request, $id) {

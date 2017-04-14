@@ -28,7 +28,7 @@ class ProductsController extends Controller
     public function create() {
         $categories = $this->categoryRepository->lists('name', 'id');
 
-        return view('admin.produtos.adicionar', compact('categories'));
+        return view('admin.produtos.gerenciar', compact('categories'));
     }
 
     public function store(AdminProductRequest $request) {
@@ -43,7 +43,7 @@ class ProductsController extends Controller
         $product = $this->repository->find($id);
         $categories = $this->categoryRepository->lists('name', 'id');
 
-        return view('admin.produtos.editar', compact('product', 'categories'));
+        return view('admin.produtos.gerenciar', compact('product', 'categories'));
     }
 
     public function update(AdminProductRequest $request, $id) {

@@ -30,7 +30,7 @@ class ClientsController extends Controller
     }
 
     public function create() {
-        return view('admin.clientes.adicionar');
+        return view('admin.clientes.gerenciar');
     }
 
     public function store(AdminClientRequest $request)
@@ -44,7 +44,7 @@ class ClientsController extends Controller
     public function edit($id) {
         $client = $this->repository->find($id);
 
-        return view('admin.clientes.editar', compact('client'));
+        return view('admin.clientes.gerenciar', compact('client'));
     }
 
     public function update(AdminClientRequest $request, $id)

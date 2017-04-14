@@ -2,9 +2,8 @@
 
 namespace CodeDelivery\Exceptions;
 
-use Barryvdh\Cors\Stack\CorsService;
+use Asm89\Stack\CorsService;
 use Exception;
-use Illuminate\Http\Response;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use League\OAuth2\Server\Exception\OAuthException;
 use Psr\Log\LoggerInterface;
@@ -15,6 +14,9 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 class Handler extends ExceptionHandler
 {
 
+    /**
+     * @var CorsService
+     */
     private $corsService;
 
     public function __construct(LoggerInterface $log, CorsService $corsService)

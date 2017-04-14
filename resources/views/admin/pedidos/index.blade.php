@@ -1,11 +1,19 @@
 @extends('app')
 
+@section('breadcrumb')
+    <h5 class="breadcrumbs-title">Pedidos</h5>
+    <ol class="breadcrumb">
+        <li><a href="index.html">Início</a></li>
+        <li class="active">Pedidos</li>
+    </ol>
+@endsection
+
 @section('content')
 
-    <div class="container">
-        <h3>Pedidos</h3>
-
-        <table class="table table-bordered">
+    <div id="row-grouping" class="section">
+        <div class="row">
+            <div class="col s12 m12 19">
+                <table id="data-table-simple" class="display" cellspacing="0" width="100%">
             <thead>
             <tr>
                 <th>ID</th>
@@ -33,20 +41,22 @@
                     @endif
                     </td>
                     <td>
-                        <ul>
-                        @foreach($order->items as $item)
-                            <li>{{ $item->product->name }}</li>
+                        @foreach($order->items as $index => $item)
+                            {{ ($index ? ',' : '') . $item->product->name }}
                         @endforeach
-                        </ul>
                     </td>
                     <td>{{$list_status[$order->status]}}</td>
-                    <td><a href="{{ route('admin.pedidos.editar', ['id'=>$order->id]) }}" class="btn btn-default btn-sm"> Editar</a></td>
+                    <td>
+                        <a href="{{ route('admin.pedidos.editar', ['id'=>$order->id]) }}"
+                           class="btn-floating waves-effect waves-light blue-grey btn-table"><i
+                                    class="mdi-editor-mode-edit"></i></a>
+                    </td>
                 </tr>
             @endforeach
             </tbody>
-        </table>
-
-        {!! $orders->render()  !!}
+                </table>
+            </div>
+        </div>
     </div>
 
 @endsection

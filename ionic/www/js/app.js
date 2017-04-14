@@ -10,10 +10,12 @@ angular.module('starter.run', []);
 
 angular.module('starter', [
     'ionic', 'starter.controllers', 'starter.services', 'angular-oauth2', 'ngResource', 'ngCordova',
-    'starter.filters', 'uiGmapgoogle-maps', 'pusher-angular', 'ionic.service.core', 'permission', 'starter.run'
+    'starter.filters', 'uiGmapgoogle-maps', 'pusher-angular', 'ionic.service.core', 'permission', 'starter.run',
+    'http-auth-interceptor'
 ])
 
     .constant('appConfig', {
+        // baseUrl: 'http://162.243.200.187',
         baseUrl: 'http://192.168.15.105:8000',
         pusherKey: '36055ebfecc0bdc5c855',
         redirectAfterLogin: {
@@ -192,6 +194,11 @@ angular.module('starter', [
                 }
             });
 
+            return $delegate;
+        }]);
+
+        $provide.decorator('oauthInterceptor', ['$delegate', function ($delegate) {
+            delete $delegate['responseError'];
             return $delegate;
         }]);
     })

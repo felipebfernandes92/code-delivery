@@ -25,7 +25,7 @@ class CupomsController extends Controller
     }
 
     public function create() {
-        return view('admin.cupons.adicionar');
+        return view('admin.cupons.gerenciar');
     }
 
     public function store(AdminCupomRequest $request) {
@@ -37,14 +37,14 @@ class CupomsController extends Controller
     }
 
     public function edit($id) {
-        $category = $this->repository->find($id);
-        return view('admin.categorias.editar', compact('category'));
+        $cupom = $this->repository->find($id);
+        return view('admin.cupons.gerenciar', compact('cupom'));
     }
 
-    public function update(AdminCategoryRequest $request, $id) {
+    public function update(Request $request, $id) {
         $data = $request->all();
         $this->repository->update($data, $id);
 
-        return redirect()->route('admin.categorias.index');
+        return redirect()->route('admin.cupons.index');
     }
 }
