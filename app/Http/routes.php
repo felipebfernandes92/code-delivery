@@ -12,6 +12,7 @@
 */
 
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@checkAuth']);
+Route::post('update-status-sensor', ['as' => 'update-status-sensor', 'uses' => 'Api\SensorController@update']);
 
 Route::group(['prefix'=>'admin','middleware'=>'auth.checkrole:admin','as'=>'admin.'], function(){
 
@@ -39,6 +40,15 @@ Route::group(['prefix'=>'admin','middleware'=>'auth.checkrole:admin','as'=>'admi
         Route::post('update/{id}', ['as' => 'update', 'uses' => 'ClientsController@update'] );
         Route::post('salvar', ['as' => 'salvar', 'uses' => 'ClientsController@store'] );
         Route::get('deletar/{id}', ['as' => 'deletar', 'uses' => 'ClientsController@destroy'] );
+    });
+
+    Route::group(['prefix'=>'sensores', 'as'=>'sensores.'], function (){
+        Route::get('', ['as' => 'index', 'uses' => 'SensorController@index']);
+        Route::get('adicionar', ['as' => 'adicionar', 'uses' => 'SensorController@create']);
+        Route::post('salvar', ['as' => 'salvar', 'uses' => 'SensorController@store']);
+        Route::get('editar/{id}', ['as' => 'editar', 'uses' => 'SensorController@edit'] );
+        Route::post('update/{id}', ['as' => 'update', 'uses' => 'SensorController@update'] );
+        Route::get('deletar/{id}', ['as' => 'deletar', 'uses' => 'SensorController@destroy'] );
     });
 
     Route::group(['prefix'=>'pedidos', 'as'=>'pedidos.'], function(){

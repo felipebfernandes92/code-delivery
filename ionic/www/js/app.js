@@ -15,8 +15,8 @@ angular.module('starter', [
 ])
 
     .constant('appConfig', {
-        // baseUrl: 'http://162.243.200.187',
-        baseUrl: 'http://192.168.15.105:8000',
+        baseUrl: 'http://162.243.200.187',
+        // baseUrl: 'http://192.168.15.105:8000',
         pusherKey: '36055ebfecc0bdc5c855',
         redirectAfterLogin: {
             client: 'client.view_orders',

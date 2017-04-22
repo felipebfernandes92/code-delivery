@@ -24,7 +24,7 @@ class OrdersController extends Controller
 
     public function index()
     {
-        $orders = $this->repository->paginate(5);
+        $orders = $this->repository->all();
         $list_status = [0 => 'Pendente', 1 => 'A caminho', 2 => 'Entregue', 3 => 'Cancelado'];
 
         return view('admin.pedidos.index', compact('orders', 'list_status'));

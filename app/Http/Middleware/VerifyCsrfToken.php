@@ -12,6 +12,7 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
+        'update-status-sensor',
         'oauth/access_token',
         'api/*'
     ];

@@ -14,7 +14,6 @@ class CategoriesController extends Controller
 
     public function __construct(CategoryRepository $repository) {
         $this->repository = $repository;
-
     }
 
     public function index() {

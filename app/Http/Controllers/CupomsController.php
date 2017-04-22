@@ -19,7 +19,7 @@ class CupomsController extends Controller
 
     public function index() {
 
-        $cupoms = $this->repository->paginate(5);
+        $cupoms = $this->repository->all();
 
         return view('admin.cupons.index', compact('cupoms'));
     }

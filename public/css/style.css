@@ -12,6 +12,11 @@ footer {
   padding-left: 240px;
 }
 
+.logo {
+  margin-top: 6px;
+  height: 42px;
+}
+
 footer {
   position:absolute;
   bottom:0;

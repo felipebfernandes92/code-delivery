@@ -46,7 +46,7 @@
 		<nav class="cyan">
 			<div class="nav-wrapper">
 				<h1 class="logo-wrapper"><a href="index.html" class="brand-logo darken-1"><img
-								src="{{ asset('images/materialize-logo.png') }}" alt="materialize logo"></a> <span class="logo-text">Materialize</span>
+								src="{{ asset('images/logo.png') }}" class="logo" alt="materialize logo"></a> <span class="logo-text">Materialize</span>
 				</h1>
 				<ul class="right hide-on-med-and-down">
 					<li class="search-out">
@@ -114,6 +114,9 @@
 				</li>
 				<li class="bold"><a href="{{ route('admin.clientes.index') }}" class="waves-effect waves-cyan"><i
 								class="mdi-social-people"></i> Clientes</a>
+				</li>
+				<li class="bold"><a href="{{ route('admin.sensores.index') }}" class="waves-effect waves-cyan"><i
+								class="mdi-action-settings-remote"></i> Sensores</a>
 				</li>
 				<li class="bold"><a href="{{ route('admin.cupons.index') }}" class="waves-effect waves-cyan"><i
 								class="mdi-maps-local-offer"></i> Cupons</a>
