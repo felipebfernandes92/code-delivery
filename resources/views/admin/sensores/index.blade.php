@@ -27,7 +27,9 @@
                         <tr>
                             <td>{{$sensor->id}}</td>
                             <td>{{$sensor->name}}</td>
-                            <td>{{$status[$sensor->status]}}</td>
+                            <td class="status-sensor" style="color: {{ $status[$sensor->status]['color'] }}">
+                                {{$status[$sensor->status]['status']}}
+                            </td>
                             <td>{{$sensor->client->user->name}}</td>
                             <td>
                                 <a href="{{ route('admin.sensores.editar', ['id'=>$sensor->id]) }}"

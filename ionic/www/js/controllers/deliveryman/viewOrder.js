@@ -35,12 +35,12 @@ angular.module('starter.controllers')
                             // erro
                         },
                         function (position) {
-                            if (!lat) {
-                                lat = position.coords.latitude;
-                                long = position.coords.longitude;
-                            } else {
-                                lat -= 0.0044;
-                            }
+                            // if (!lat) {
+                            lat = position.coords.latitude;
+                            long = position.coords.longitude;
+                            // } else {
+                            //     lat -= 0.0044;
+                            // }
                             DeliverymanOrder.geo({id: $stateParams.id}, {
                                 lat: lat,
                                 long: long,

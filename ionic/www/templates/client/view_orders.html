@@ -3,7 +3,7 @@
     <ion-content class="padding has-header">
         <ion-refresher pulling-text="Puxe para atualizar..." on-refresh="doRefresh()"></ion-refresher>
         <ion-list>
-            <ion-item collection-repeat="order in orders" ng-click="openOrderDetail(order)" on-hold="showActionSheet(order)">
+            <ion-item collection-repeat="order in orders" ng-click="showActionSheet(order)">
                 <div class="row">
                     <div class="col">
                         <h2>{{ order.created_at.date | limitTo: 10 | date: 'dd/MM/yyyy' }}</h2>
