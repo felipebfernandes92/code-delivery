@@ -82,10 +82,14 @@ class OrderService
         $order->status = $status;
         switch ((int) $status){
             case 1:
+                $user = $order->client->user;
                 if (!$order->hash){
                     $order->hash = md5((new \DateTime())->getTimestamp());
                 }
                 $order->save();
+                $this->pushProcessor->notify([$user->device_token], [
+                    'message' => "Seu pedido {$order->id} acabou de sair para entregua!"
+                ]);
                 break;
             case 2:
                 $user = $order->client->user;

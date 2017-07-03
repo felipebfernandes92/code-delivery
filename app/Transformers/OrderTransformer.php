@@ -26,7 +26,7 @@ class OrderTransformer extends TransformerAbstract
         return [
             'id'         => (int) $model->id,
             'total'      =>  (float) $model->total,
-            'status'     => $model->status,
+            'status'     => $this->getStatus($model->status),
             'product_names' => $this->getArrayProductNames($model->items),
             'hash'       => $model->hash,
             /* place your other model properties here */
@@ -52,7 +52,6 @@ class OrderTransformer extends TransformerAbstract
 
         return $names;
     }
-
 
     public function includeClient(Order $model)
     {
