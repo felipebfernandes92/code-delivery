@@ -16,7 +16,7 @@ angular.module('starter', [
 
     .constant('appConfig', {
         baseUrl: 'http://162.243.200.187',
-        // baseUrl: 'http://192.168.15.105:8000',
+        //baseUrl: 'http://localhost:8000',
         pusherKey: '36055ebfecc0bdc5c855',
         redirectAfterLogin: {
             client: 'client.view_orders',
@@ -24,7 +24,7 @@ angular.module('starter', [
         }
     })
 
-    .run(function ($ionicPlatform, $window, appConfig, $localStorage) {
+    .run(function ($ionicPlatform, $window, appConfig, $localStorage, $ionicPopup) {
         $ionicPlatform.ready(function () {
             $window.client = new Pusher(appConfig.pusherKey);
 
@@ -45,7 +45,10 @@ angular.module('starter', [
             var push = new Ionic.Push({
                 debug: true,
                 onNotification: function (message) {
-                    alert(message.text);
+                    $ionicPopup.alert({
+                        title: 'Atenção',
+                        template: message.text
+                    });
                 },
                 pluginConfig: {
                     android: {

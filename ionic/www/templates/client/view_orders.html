@@ -3,12 +3,14 @@
     <ion-content class="padding has-header">
         <ion-refresher pulling-text="Puxe para atualizar..." on-refresh="doRefresh()"></ion-refresher>
         <ion-list>
-            <ion-item collection-repeat="order in orders" ng-click="showActionSheet(order)">
+            <ion-item collection-repeat="order in orders" ng-click="openOrderDelivery(order)">
                 <div class="row">
                     <div class="col">
-                        <h2>{{ order.created_at.date | limitTo: 10 | date: 'dd/MM/yyyy' }}</h2>
-                        <p>{{ order.product_names | limitTo: 2 | join: ', ' }}</p>
-                        <i class="ion ion-ios-cart"> {{ order.product_names.length }} Itens</i>
+                        <h2>Pedido {{ order.id }}</h2>
+                        <p>{{ order.created_at.date | limitTo: 10 | date: 'dd/MM/yyyy' }}</p>
+                        <i class="ion ion-ios-cart"> {{ order.product_names.length }} Item(s):
+                            {{ order.product_names | limitTo: 2 | join: ', ' }}</i>
+                        <p>Status: <strong class="{{ colorStatus(order.status) }}">{{ order.status }}</strong></p>
                     </div>
                     <div class="col text-right">
                         <i class="ion ion-social-usd"> {{ order.total }}</i>

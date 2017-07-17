@@ -24,7 +24,7 @@ angular.module('starter.controllers')
 
             ClientOrder.get({id: $stateParams.id, include: "items,cupom"}, function(data) {
                 $scope.order = data.data;
-                if(parseInt($scope.order.status, 10) == 1) {
+                if($scope.order.status === 'A caminho') {
                     initMarkers($scope.order);
                 } else {
                     $ionicPopup.alert({

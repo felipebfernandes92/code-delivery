@@ -4,6 +4,15 @@
         <h2 class="title">Total: {{ order.total }}</h2>
     </div>
     <ion-content class="padding has-subheader">
+        <div class="card">
+            <div class="item item-text-wrap">
+                <h2>Cliente: {{ order.client.data.name }}</h2>
+                <h2>Telefone: {{ order.client.data.phone }}</h2>
+                <p>{{ order.client.data.address }}, {{ order.client.data.city }} - {{ order.client.data.state }} |
+                {{ order.client.data.zipcode }}</p>
+            </div>
+        </div>
+
         <div class="item item-divider">
             Data da compra: {{ order.created_at.date | limitTo: 10 | date: 'dd/MM/yyyy' }}
         </div>

@@ -19,7 +19,24 @@ angular.module('starter.controllers')
 
             $scope.openOrderDetail = function (order) {
                 $state.go('deliveryman.view_order', {id: order.id});
-            }
+            };
+
+            $scope.colorStatus = function (status) {
+                switch (status) {
+                    case 'Pendente':
+                        return 'energized';
+                        break;
+                    case 'A caminho':
+                        return 'positive'
+                        break;
+                    case 'Entregue':
+                        return 'balanced'
+                        break;
+                    default:
+                        return 'assertive'
+                }
+            };
+
 
             function getOrders() {
                 return DeliverymanOrder.query({
